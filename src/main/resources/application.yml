@@ -1,0 +1,80 @@
+# =============================================
+# etERP 공통 설정 (모든 환경 공통 적용)
+# 환경별 설정은 application-{profile}.yml 참고
+# =============================================
+
+spring:
+  application:
+    name: etERP
+
+  # 활성 프로파일 설정 (기본: dev)
+  # 운영 배포 시: -Dspring.profiles.active=prod
+  profiles:
+    active: dev
+
+  # =============================================
+  # Thymeleaf 공통 설정
+  # =============================================
+  thymeleaf:
+    prefix: classpath:/templates/
+    suffix: .html
+    encoding: UTF-8
+    mode: HTML
+
+  # =============================================
+  # Jackson JSON 공통 설정
+  # =============================================
+  jackson:
+    time-zone: Asia/Seoul
+    date-format: yyyy-MM-dd HH:mm:ss
+    serialization:
+      write-dates-as-timestamps: false
+
+# =============================================
+# 서버 설정
+# =============================================
+server:
+  port: 8080
+  # 에러 응답에 메시지 포함 (개발 편의)
+  error:
+    include-message: always
+    include-binding-errors: always
+
+# =============================================
+# JWT 설정 (토큰 인증)
+# =============================================
+app:
+  jwt:
+    # ⚠️ 운영 환경에서는 반드시 환경변수로 주입하세요!
+    secret: etErpSuperSecretKey2026!ForJwtHmacSha256AlgorithmMinimum256Bits
+    access-token-expiry: 3600      # 액세스 토큰 유효시간 (초) - 1시간
+    refresh-token-expiry: 604800   # 리프레시 토큰 유효시간 (초) - 7일
+
+# =============================================
+# Swagger UI 설정
+# =============================================
+springdoc:
+  api-docs:
+    path: /v3/api-docs
+  swagger-ui:
+    path: /swagger-ui.html
+    tags-sorter: alpha
+    operations-sorter: alpha
+
+# =============================================
+# Actuator 설정 (헬스체크 / 모니터링)
+# =============================================
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health, info, metrics
+  endpoint:
+    health:
+      show-details: when-authorized
+
+info:
+  app:
+    name: etERP
+    version: 1.0.0
+    description: 사내 ERP 시스템 (Spring WebFlux + R2DBC)
