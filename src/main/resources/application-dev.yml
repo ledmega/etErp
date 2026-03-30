@@ -1,16 +1,13 @@
 # =============================================
-# etERP 개발 환경 설정 (application-dev.yml)
-# 로컬 개발 및 개발 서버 환경에서 사용
+# Jasypt 암호화 설정 (루트 레벨 필수)
 # =============================================
+jasypt:
+  encryptor:
+    password: ${JASYPT_ENCRYPTOR_PASSWORD:eterp_secret_key} # 기본값 제공
 
 spring:
 
   # =============================================
-  # Jasypt 암호화 설정
-  # =============================================
-  jasypt:
-    encryptor:
-      password: ${JASYPT_ENCRYPTOR_PASSWORD:eterp_secret_key} # 기본값 제공
 
   # =============================================
   # R2DBC 설정 (Reactive 논블로킹 DB 연결)
