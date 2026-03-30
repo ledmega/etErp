@@ -70,6 +70,7 @@ CREATE TABLE IF NOT EXISTS sys_user (
     email         VARCHAR(200)  NULL COMMENT '이메일',
     phone         VARCHAR(20)   NULL COMMENT '전화번호',
     dept_id       BIGINT        NULL COMMENT '부서 ID',
+    user_status   VARCHAR(20)   NOT NULL DEFAULT 'PENDING' COMMENT '계정상태 (PENDING/ACTIVE/INACTIVE)',
     use_yn        CHAR(1)       NOT NULL DEFAULT 'Y' COMMENT '사용여부',
     pwd_changed_at DATETIME     NULL COMMENT '비밀번호 변경일시',
     last_login_at DATETIME      NULL COMMENT '최종 로그인 일시',

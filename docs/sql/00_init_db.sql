@@ -13,7 +13,7 @@ CREATE DATABASE IF NOT EXISTS eterp
     COLLATE utf8mb4_unicode_ci;
 
 -- 2. 계정 생성 (모든 외부 접속 허용)
-CREATE USER IF NOT EXISTS 'eterp'@'%' IDENTIFIED BY 'eterp1234!';
+CREATE USER IF NOT EXISTS 'eterp'@'%' IDENTIFIED BY 'diablo4213@#$';
 
 -- 3. 권한 부여
 GRANT ALL PRIVILEGES ON eterp.* TO 'eterp'@'%';
