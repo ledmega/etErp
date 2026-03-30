@@ -1,0 +1,102 @@
+# ========================
+# IntelliJ IDEA
+# ========================
+.idea/
+*.iml
+*.iws
+*.ipr
+out/
+.idea_modules/
+
+# ========================
+# Gradle
+# ========================
+.gradle/
+build/
+!gradle/wrapper/gradle-wrapper.jar
+!**/src/main/**/build/
+!**/src/test/**/build/
+gradle-app.setting
+
+# ========================
+# Spring Boot
+# ========================
+target/
+*.jar
+*.war
+*.nar
+*.ear
+*.zip
+*.tar.gz
+*.rar
+HELP.md
+
+# ========================
+# 환경 설정 파일 (보안 - Git 제외 필수!)
+# ========================
+application-prod.yml
+application-local.yml
+*.env
+.env*
+secrets/
+
+# ========================
+# 로그 파일
+# ========================
+logs/
+*.log
+*.log.*
+
+# ========================
+# OS 관련
+# ========================
+# Windows
+Thumbs.db
+Thumbs.db:encryptable
+ehthumbs.db
+ehthumbs_vista.db
+Desktop.ini
+$RECYCLE.BIN/
+*.cab
+*.msi
+*.msix
+*.msm
+*.msp
+*.lnk
+
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+._*
+.DocumentRevisions-V100
+.fseventsd
+.Spotlight-V100
+.TemporaryItems
+.Trashes
+.VolumeIcon.icns
+.com.apple.timemachine.donotpresent
+
+# ========================
+# 테스트 리포트
+# ========================
+test-results/
+*.html
+!src/**/*.html
+!templates/**/*.html
+
+# ========================
+# 정적 분석 / 커버리지
+# ========================
+.sonar/
+*.exec
+
+# ========================
+# 임시 파일
+# ========================
+tmp/
+temp/
+*.tmp
+*.bak
+*.swp
+*~.nib
