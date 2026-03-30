@@ -3,7 +3,9 @@
 # =============================================
 jasypt:
   encryptor:
-    password: ${JASYPT_ENCRYPTOR_PASSWORD:eterp_secret_key} # 기본값 제공
+    password: ${JASYPT_ENCRYPTOR_PASSWORD:eterp_secret_key}
+    algorithm: PBEWithMD5AndDES
+    iv-generator-classname: org.jasypt.iv.NoIvGenerator
 
 spring:
 
