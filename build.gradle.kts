@@ -96,6 +96,12 @@ dependencies {
     annotationProcessor("org.projectlombok:lombok")
 
     // =============================================
+    // Jasypt (DB 접속 정보 등 프로퍼티 암호화)
+    // =============================================
+    implementation("com.github.ulisesbocchio:jasypt-spring-boot-starter:3.0.5")
+
+
+    // =============================================
     // 테스트 의존성
     // =============================================
     testImplementation("org.springframework.boot:spring-boot-starter-test") {
