@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>etERP - 새로운 차원의 업무 시작</title>
+    <!-- Use the new auth CSS -->
+    <link rel="stylesheet" th:href="@{/css/auth.css}">
+</head>
+<body>
+
+<div class="auth-container">
+    <div class="auth-header">
+        <h1 class="auth-logo">etERP</h1>
+        <p class="auth-subtitle">Welcome back. Let's get to work.</p>
+    </div>
+
+    <!-- Login Form -->
+    <form id="loginForm" action="/api/v1/auth/login" method="post" onsubmit="handleLogin(event)">
+        <div class="form-group">
+            <label class="form-label">사용자 아이디</label>
+            <input type="text" id="loginId" name="loginId" class="form-input" placeholder="사번 또는 아이디 입력" required autocomplete="username">
+        </div>
+        
+        <div class="form-group">
+            <label class="form-label">비밀번호</label>
+            <input type="password" id="password" name="password" class="form-input" placeholder="••••••••" required autocomplete="current-password">
+        </div>
+
+        <div class="error-msg" id="loginError">아이디 또는 비밀번호가 일치하지 않습니다.</div>
+
+        <button type="submit" class="btn-primary" id="loginBtn">로그인</button>
+    </form>
+
+    <div class="auth-footer">
+        <p>계정이 없으신가요? <a th:href="@{/signup}" class="auth-link">가입 신청하기</a></p>
+    </div>
+</div>
+
+<script>
+    async function handleLogin(e) {
+        e.preventDefault();
+        
+        const loginBtn = document.getElementById('loginBtn');
+        const errorMsg = document.getElementById('loginError');
+        const loginId = document.getElementById('loginId').value;
+        const password = document.getElementById('password').value;
+
+        // Reset state
+        errorMsg.style.display = 'none';
+        loginBtn.innerHTML = '<span class="spinner"></span>';
+        loginBtn.disabled = true;
+
+        try {
+            const response = await fetch('/api/v1/auth/login', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ loginId, password })
+            });
+
+            const result = await response.json();
+
+            if (result.success) {
+                // 로그인 성공 시 백엔드가 토큰을 쿠키에 굽거나 로컬 스토리지에 저장하므로 메인으로 바로 이동
+                window.location.href = '/dashboard';
+            } else {
+                // API 에러 응답
+                errorMsg.innerText = result.message || '로그인에 실패했습니다.';
+                errorMsg.style.display = 'block';
+                loginBtn.innerHTML = '로그인';
+                loginBtn.disabled = false;
+            }
+        } catch (error) {
+            errorMsg.innerText = '서버 통신 중 오류가 발생했습니다.';
+            errorMsg.style.display = 'block';
+            loginBtn.innerHTML = '로그인';
+            loginBtn.disabled = false;
+        }
+    }
+</script>
+
+</body>
+</html>
