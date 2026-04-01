@@ -84,7 +84,8 @@
 
 | Method | URL | 설명 |
 |--------|-----|------|
-| POST | `/api/v1/auth/login` | 로그인 (JWT 발급) |
+| POST | `/api/v1/auth/signup` | 가입 승인 요청 (승인 대기 상태로 계정 생성) |
+| POST | `/api/v1/auth/login` | 로그인 (토큰 발급) |
 | POST | `/api/v1/auth/logout` | 로그아웃 |
 | POST | `/api/v1/auth/refresh` | 토큰 갱신 |
 | GET  | `/api/v1/auth/me` | 내 정보 조회 |
