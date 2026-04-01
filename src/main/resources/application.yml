@@ -34,7 +34,7 @@ spring:
 # 서버 설정
 # =============================================
 server:
-  port: 8081
+  port: 8089
   # 에러 응답에 메시지 포함 (개발 편의)
   error:
     include-message: always
