@@ -2,7 +2,7 @@ package com.et.erp.common.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.http.HttpMethod;
+
 import org.springframework.security.config.annotation.method.configuration.EnableReactiveMethodSecurity;
 import org.springframework.security.config.annotation.web.reactive.EnableWebFluxSecurity;
 import org.springframework.security.config.web.server.ServerHttpSecurity;
@@ -58,22 +58,20 @@ public class SecurityConfig {
                 .pathMatchers("/swagger-ui/**", "/v3/api-docs/**").permitAll() // Swagger UI (개발환경)
 
                 // =============================================
-                // HTTP 메서드별 접근 권한 (나중에 세분화)
+                // 임시: 모든 요청 인증 해제 (Basic Auth 팝업 방지용)
                 // =============================================
-                .pathMatchers(HttpMethod.GET, "/api/v1/**").authenticated()  // GET: 인증 필요
-                .pathMatchers("/api/v1/**").authenticated()                   // 나머지: 인증 필요
+                // .pathMatchers(HttpMethod.GET, "/api/v1/**").authenticated()
+                // .pathMatchers("/api/v1/**").authenticated()
+                // .pathMatchers("/dashboard/**").authenticated()
+                // .pathMatchers("/system/**").authenticated()
+                // .pathMatchers("/hr/**").authenticated()
+                // .pathMatchers("/accounting/**").authenticated()
+                // .pathMatchers("/purchase/**").authenticated()
+                // .pathMatchers("/sales/**").authenticated()
+                // .pathMatchers("/inventory/**").authenticated()
 
-                // Thymeleaf 뷰 페이지 - 인증 필요
-                .pathMatchers("/dashboard/**").authenticated()
-                .pathMatchers("/system/**").authenticated()
-                .pathMatchers("/hr/**").authenticated()
-                .pathMatchers("/accounting/**").authenticated()
-                .pathMatchers("/purchase/**").authenticated()
-                .pathMatchers("/sales/**").authenticated()
-                .pathMatchers("/inventory/**").authenticated()
-
-                // 위에서 정의되지 않은 모든 요청 - 인증 필요
-                .anyExchange().authenticated()
+                // 모든 요청 임시 허용
+                .anyExchange().permitAll()
             )
 
             // 기본 HTTP 로그인 폼 비활성화 (JWT 방식으로 대체)
